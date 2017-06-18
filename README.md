@@ -2,7 +2,7 @@
 
 This repository contains client side application of [library application](https://github.com/ismailmuratkarakose/library).
 
-##Service App
+## Service App
 Service app provides the services of this repository app.
 
 ## Development server
