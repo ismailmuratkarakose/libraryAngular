@@ -27,7 +27,7 @@
                 <td> {{reservation.user.name}}&nbsp;{{reservation.user.lastName}}</td>
                 <td> {{reservation.book.name}}</td>
                 <td> {{reservation.borrowDate | date:'medium'}}</td>
-                <td> {{reservation.returnDate}}</td>
+                <td> {{reservation.returnDate | date:'medium'}}</td>
                 <td> {{reservation.status}}</td>
                 <td><a href="javascript:;" (click)="findReservation(reservation.id)">Edit</a></td>
               </tr>
@@ -64,26 +64,16 @@
             <div class="form-group">
               <div class="col-md-2">
                 <label class="control-label padding-bottom-5 padding-top-rulename">
-                  User Name
+                  User mail
                 </label>
               </div>
               <div class="col-md-10">
-                <input type="text" name="name" data-required="1"
-                       [(ngModel)]="user.name"
-                       placeholder="Fitst Name"
+                <input type="text" name="mail" data-required="1"
+                       [(ngModel)]="user.email"typeaheadOptionField="email" (typeaheadOnSelect)="selectUser($event)" [typeahead]="users"
+                       placeholder="Email"
                        class="form-control padding-right-left"/>
               </div>
-              <div class="col-md-2">
-                <label class="control-label padding-bottom-5 padding-top-rulename">
-                  User lastname
-                </label>
-              </div>
-              <div class="col-md-10">
-                <input type="text" name="lastname" data-required="1"
-                       [(ngModel)]="user.lastName"
-                       placeholder="Last Name"
-                       class="form-control padding-right-left"/>
-              </div>
+
               <div class="col-md-2">
                 <label class="control-label padding-bottom-5 padding-top-rulename">
                   Book name
@@ -91,7 +81,7 @@
               </div>
               <div class="col-md-10">
                 <input type="text" name="bookName" data-required="1"
-                       [(ngModel)]="book.name"
+                       [(ngModel)]="book.name" typeaheadOptionField="name" (typeaheadOnSelect)="selectBook($event)" [typeahead]="books"
                        placeholder="Book Name"
                        class="form-control padding-right-left"/>
               </div>

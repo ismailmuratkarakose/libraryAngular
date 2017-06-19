@@ -7,6 +7,8 @@ import {ReservationService} from "./reservation.service";
 import {Reservation} from "./Reservation";
 import {User} from "../user/User";
 import {Book} from "../book/Book";
+import {UserService} from "../user/user.service";
+import {BookService} from "../book/book.service";
 @Component({
   selector: "reservations",
   templateUrl: "./reservations.html"
@@ -14,27 +16,63 @@ import {Book} from "../book/Book";
 export class ReservationsComponent implements OnInit {
 
   public reservations: Array<Reservation>;
+  public books: Array<Book>;
+  public users: Array<User>;
   public reservation: Reservation;
   public book: Book;
   public user: User;
   public buttonValue: string;
 
-  constructor(private reservationService: ReservationService) {
+  constructor(private reservationService: ReservationService,private userService:UserService,private bookService:BookService) {
   }
 
   ngOnInit(): void {
     this.buttonValue = "Save";
     this.getAllReservations();
+    this.getAllBooks();
+    this.getAllUsers();
     this.reservation = new Reservation();
     this.book = new Book();
     this.user = new User();
   }
 
+  selectBook(e:any){
+    this.book.id=e.item.id;
+  }selectUser(e:any){
+    this.user.id=e.item.id;
+  }
   clearSelection() {
     this.buttonValue = "Save";
     this.reservation = new Reservation();
     this.book = new Book();
     this.user = new User();
+  }
+
+  getAllBooks() {
+    this.bookService.getAllBooks()
+      .finally(() => {
+
+      }).subscribe((data: any) => {
+        this.books = data.map(function (datum) {
+          return new Book(datum.id, datum.name, datum.author, datum.publisher, datum.quantity);
+        })
+      },
+      err => {
+        console.log(err);
+      });
+  }
+
+  getAllUsers() {
+    this.userService.getAllUsers()
+      .finally(() => {
+      }).subscribe((data: any) => {
+        this.users = data.map(function (datum) {
+          return new User(datum.id, datum.email, datum.password, datum.name, datum.lastName, datum.phone, datum.type);
+        })
+      },
+      err => {
+        console.log(err);
+      });
   }
 
   getAllReservations() {

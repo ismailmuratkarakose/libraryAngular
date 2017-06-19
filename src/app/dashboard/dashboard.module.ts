@@ -9,9 +9,10 @@ import {UserService} from "./user/user.service";
 import {BookService} from "./book/book.service";
 import {ReservationService} from "./reservation/reservation.service";
 import {FormsModule} from "@angular/forms";
+import {TypeaheadModule} from "ngx-bootstrap";
 
 @NgModule({
-  imports: [BrowserModule,FormsModule],
+  imports: [BrowserModule,FormsModule,TypeaheadModule.forRoot()],
   providers: [AuthenticationService, UserService, BookService, ReservationService],
   declarations: [
     DashboardComponent, UsersComponent, ReservationsComponent, BooksComponent],

@@ -18,7 +18,8 @@ export class ReservationService{
   }
 
   public addReservation(reservation: Reservation) {
-    return this.authHttp.post(GlobalVariable.BASE_API_URL + '/reservations/add', JSON.stringify(reservation), this.options);
+    return this.authHttp.post(GlobalVariable.BASE_API_URL + '/reservations/add', JSON.stringify({id:reservation.id,userId:reservation.user.id,
+      bookId:reservation.book.id,borrowDate:reservation.borrowDate,returnDate:reservation.returnDate,status:reservation.status}), this.options);
   }
 
   public getAllReservations() {
@@ -30,7 +31,8 @@ export class ReservationService{
   }
 
   public updateReservation(reservation: Reservation) {
-    return this.authHttp.post(GlobalVariable.BASE_API_URL + '/reservations/update', JSON.stringify(reservation), this.options);
+    return this.authHttp.post(GlobalVariable.BASE_API_URL + '/reservations/update', JSON.stringify({id:reservation.id,userId:reservation.user.id,
+      bookId:reservation.book.id,borrowDate:reservation.borrowDate,returnDate:reservation.returnDate,status:reservation.status}), this.options);
   }
 
 
