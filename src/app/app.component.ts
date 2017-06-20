@@ -14,10 +14,12 @@ export class AppComponent implements OnInit {
 
   public isAuthenticated: boolean = false;
   public isAdmin: boolean = false;
+  public isLabrarian: boolean = false;
 
   ngOnInit(): void {
     this.isAuthenticated = this.authenticationService.isUserAuthanticated();
     this.isAdmin = this.authenticationService.isUserAdmin();
+    this.isAdmin = this.authenticationService.isUserLibrarian();
   }
 
   logout(){

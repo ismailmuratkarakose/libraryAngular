@@ -7,7 +7,7 @@
       <li><a [routerLink]="['/dashboard']">Library</a></li>
       <li><a [routerLink]="['/books']">Books</a></li>
       <li *ngIf="isAdmin"><a [routerLink]="['/users']">Users</a></li>
-      <li><a [routerLink]="['/reservations']">Reservations</a></li>
+      <li *ngIf="isAdmin||isLabrarian"><a [routerLink]="['/reservations']">Reservations</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li (click)="logout()"><a href="javascript:;"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>

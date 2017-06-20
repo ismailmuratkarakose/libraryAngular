@@ -66,7 +66,7 @@ export class ReservationsComponent implements OnInit {
     this.userService.getAllUsers()
       .finally(() => {
       }).subscribe((data: any) => {
-        this.users = data.map(function (datum) {
+        this.users = data.filter(user=>user.type=='STUDENT').map(function (datum) {
           return new User(datum.id, datum.email, datum.password, datum.name, datum.lastName, datum.phone, datum.type);
         })
       },
@@ -93,9 +93,12 @@ export class ReservationsComponent implements OnInit {
   }
 
   createReservation() {
+    this.reservation.user=this.user;
+    this.reservation.book=this.book;
     this.reservationService.addReservation(this.reservation)
       .finally(() => {
         this.getAllReservations();
+        this.reservation= new Reservation();
       }).subscribe((data: any) => {
     }, err => {
       console.log(err);

@@ -92,7 +92,7 @@
               </div>
               <div class="col-md-10">
                 <input type="date" name="borrow" data-required="1"
-                       [ngModel]="reservation.borrowDate | date:'y-MM-dd'"
+                       [(ngModel)]="reservation.borrowDate"
                        class="form-control padding-right-left"/>
               </div>
               <div class="col-md-2">
@@ -102,7 +102,7 @@
               </div>
               <div class="col-md-10">
                 <input type="date" name="return" data-required="1"
-                       [ngModel]="reservation.returnDate | date:'y-MM-dd'"
+                       [(ngModel)]="reservation.returnDate"
                        class="form-control padding-right-left"/>
               </div>
               <div class="col-md-2">

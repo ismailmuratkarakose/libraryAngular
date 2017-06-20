@@ -35,5 +35,11 @@ export class AuthenticationService {
     }else{
       return false;
     }
+  }  isUserLibrarian():boolean{
+    if(localStorage.getItem("userType")!=null && localStorage.getItem("userType")==="LIBRARIAN"){
+      return true;
+    }else{
+      return false;
+    }
   }
 }
